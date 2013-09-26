@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>测试滚动</title>
+<style type="text/css">
+html,body,ul,ol,dl,li,p{margin: 0;padding: 0;}
+ul,li {list-style-type:none;}
+.wmq-con-right {margin:50px auto; width: 230px;height:160px;overflow: hidden;border:1px solid #ddd;}
+.socialExt .socialExt-con .socialExt-info a {font: bold 12px/20px Arial;color: #32526f;text-decoration:none}
+.socialExt .socialExt-con .socialExt-info a:hover {color: #f60;}
+.socialExt .socialExt-con .socialExt-info p {font: normal 12px/20px Arial;color:#32526f;}
+</style>
+<script type="text/javascript" src="http://style.aliunicorn.com/js/6v/atom/atom-sc.js"></script>
+</head>
+
+<body>
+<div class="wmq-con-right">
+			<div class="socialExt box-border J-socialExt" >
+				<div class="socialExt-con J-socialExt-con">
+					<div class="socialExt-info">
+						<a href="#" target="_blank">1托塔李天王</a>
+						<p>1发大水范德萨发的</p>
+					</div>
+				</div>
+				<div class="socialExt-con J-socialExt-con">
+					<div class="socialExt-info">
+						<a href="#" target="_blank">2托塔李天王</a>
+						<p>2发大水范德萨发的</p>
+					</div>
+				</div>
+				<div class="socialExt-con J-socialExt-con">
+					<div class="socialExt-info">
+						<a href="#" target="_blank">3托塔李天王</a>
+						<p>3发大水范德萨发的</p>
+					</div>
+				</div>
+				<div class="socialExt-con J-socialExt-con">
+					<div class="socialExt-info">
+						<a href="#" target="_blank">4托塔李天王</a>
+						<p>4发大水范德萨发的</p>
+					</div>
+				</div>
+				<div class="socialExt-con J-socialExt-con">
+					<div class="socialExt-info">
+						<a href="#" target="_blank">5托塔李天王</a>
+						<p>3发大水范德萨发的</p>
+					</div>
+				</div>
+				<div class="socialExt-con J-socialExt-con">
+					<div class="socialExt-info">
+						<a href="#" target="_blank">6托塔李天王</a>
+						<p>4发大水范德萨发的</p>
+					</div>
+				</div>
+			</div>			
+		</div>
+
+<script type="text/javascript">
+	seajs.use(['$','http://localhost/demo/testPlugin/plugin_Scroll/ll_Scroll'],function($,Scroll){
+			//向上滚动		    	
+		    new Scroll({
+		    	fatherTag:'.J-socialExt',
+		        conTag:'.J-socialExt-con',
+		        speed:3000,
+		        direction:'down'
+		    });
+	  });
+</script>
+<div style="height:100px"></div>
+</body>
+</html>

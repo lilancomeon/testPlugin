@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>瀑布流</title>
+<style type="text/css">
+	html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
+	body,td,th{font-size:9pt;color:666666;}
+	.wf-main{position: relative;margin: 0 auto;width: 990px;overflow: hidden;}
+.wf-main .wf-cld{position: absolute;padding:5px 8px;line-height:18px;width: 214px;left: -9999px;top: -9999px;border: 1px solid #999;border-radius: 4px;background-color: #ccc;overflow: hidden;}
+
+</style>
+<script type="text/javascript" src="../seajs2.1.0.js"></script>
+</head>
+
+<body>
+<div class="wf-main" id="wf-main">
+    <div class="wf-cld"><h2 style="color:#f50">1、瀑布流</h2></div>
+    <div class="wf-cld">2<br>2</div>
+    <div class="wf-cld">3<br>4<br>4</div>
+    <div class="wf-cld">4<br>4<br>4<br>4</div>
+    <div class="wf-cld">5<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">6<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">7<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">8<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">9<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">10<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">18<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">19<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">20<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">21、内部瀑布流</div>
+    <div class="wf-cld">22<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">23<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">24<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">11<br>2<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">12<br>2<br>2<br>3<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">13<br>4<br>4<br>3<br>3<br>1<br>2<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">14<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">15<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">16<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+    <div class="wf-cld">17<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4<br>4</div>
+</div>
+<script>
+	seajs.use('plugin_Pinterest/ll_Pinteret',function(Pinteret) {
+		new Pinteret({
+			container:'#wf-main',
+			child : ".wf-cld",
+			col : 4,
+            marginRight: 5,
+            marginHeight: 5
+		});
+	});
+</script>
+</body>
+</html>

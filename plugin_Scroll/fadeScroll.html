@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gold Supplier</title>
+<style type="text/css">
+	html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,pre, form, fieldset, table, th, td { margin: 0; padding: 0; }
+	body,td,th{font-size:9pt;color:666666;}
+	td{font-size: 9pt;text-decoration: none;}
+	img{ border:none;}
+	ul,li{ list-style-type:none;}
+
+	.banner .banner-wrap{height:300px;overflow: hidden;position: relative;}
+	.slider-pager{bottom: 10px;height: 16px;position: absolute;left:47%;z-index: 14;}
+	.slider-pager .pager-link{background:url(http://i02.i.aliimg.com/js/5v/esite/img/common.png) no-repeat 0 0 transparent;*background:url(http://i02.i.aliimg.com/js/5v/esite/img/common-ie67.png) no-repeat 0 0 transparent;display:inline-block;height:12px;width:12px;overflow:hidden;text-decoration:none;margin:0 3px;background-position:0 -150px;border:none;}
+	.slider-pager .pager-link:hover{text-decoration:none;}
+	.slider-pager .pager-active{background-position:0 -165px}
+	.banner .slider-prev, .banner .slider-next{background: url("http://i02.i.aliimg.com/simg/sprites/env/aisn/home-v3.png") no-repeat scroll 0 -180px transparent;cursor: pointer;display:inline-block;font-size:0;height:44px;margin-top:-22px;position:absolute;top:50%;width:44px;z-index: 14;}
+	.banner .slider-next{background-position: 0 -270px;}
+	.banner .slider-prev:hover, .banner .slider-next:hover{opacity: 0.7;filter:alpha(opacity=70);}
+	.banner .banner-wrap li a{display:block;height:300px;width: 100%;}	
+</style>
+<script type="text/javascript" src="http://style.aliunicorn.com/js/6v/atom/atom-sc.js"></script>
+</head>
+<body>
+	<div class="banner" id="Js-banner">
+		<div class="banner-wrap">
+			<div class="slider-pager" id="js-top-slider-pager"></div>
+			<div class="slider-prev" id="js-top-slider-prev"></div>
+			<div class="slider-next" id="js-top-slider-next"></div>
+			<div class="bx-wrapper">
+				<div class="bx-window">
+					<ul id="js-top-slider">
+						<li>
+							<div style="background-color:#ebebeb;">
+								<a href="#" style="background:url('images/banner_201309_01.jpg') top center no-repeat" target="_blank" title=""></a>
+							</div>
+						</li>
+						<li>
+							<div style="background-color:#dbe6e6;">
+								<a data-pic="images/banner_201309_02.jpg" href="#" target="_blank" title=""></a>
+							</div>
+						</li>
+						<li>
+							<div style="background-color:#f5ead7;">
+								<a data-pic="images/banner_201309_03.jpg" target="_blank" title=""></a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		seajs.use(['$'],function($) {
+			Banner = function(options){
+				this.initialize(options);
+			};
+			Banner.prototype = {
+				initialize: function (options) {
+					this.options = $.extend({}, this.options, options || {});
+					this.element();
+					this.ui();
+					this.event();				
+				},
+				timer : null,  
+				element: function () {
+					this.container = $(this.options.container);
+					this.pager = this.container.find(this.options.pager);
+					this.prev = this.container.find(this.options.prev);
+					this.next = this.container.find(this.options.next);
+					this.slider = this.container.find(this.options.slider);
+					this.items = this.slider.find('li');
+					this.total = this.items.length;
+					this.cursor = 0;				
+				},
+				ui: function () {				
+					this.itemsUI();
+					this.pagerUI();
+					this.toolUI();
+				},
+			    autoPlay : function(){
+				  var self = this,
+				      index = (self.cursor + 1) >= self.total ? 0 : (self.cursor + 1);          
+		          self.timer=window.setInterval(function(){						
+						self.switchView(self.cursor, index);
+					}, 5000);
+		        },
+		        autoStop : function(){
+		          window.clearInterval(this.timer);
+		        },
+				event: function () {
+					var self = this;					
+					this.pager.delegate('.pager-link', 'mouseover', function(){
+						var el = $(this);
+						if(el.hasClass('pager-active')){ return; }
+						var els = self.pager.find('.pager-link'),
+						index = els.index(el);
+						self.switchView(self.cursor, index);
+					});
+					this.container.bind({
+			          'mouseover' : function(){
+			               self.prev.css('display','block');
+			               self.next.css('display','block');
+			               self.autoStop()
+			          },
+			          'mouseout' : function(){
+			          	  var index = (self.cursor + 1) >= self.total ? 0 : (self.cursor + 1);
+			              self.prev.css('display','none'); 
+			              self.next.css('display','none');
+			              self.autoPlay()
+			          }
+			        });
+					this.prev.click(function(){
+						var index = (self.cursor - 1) < 0 ? (self.total - 1) : (self.cursor - 1);
+						self.switchView(self.cursor, index);
+					});
+					this.next.click(function(){
+						var index = (self.cursor + 1) >= self.total ? 0 : (self.cursor + 1);
+						self.switchView(self.cursor, index);
+					});					
+					self.autoPlay();				
+					$(window).resize(function(){
+						self.toolUI();
+					});
+				},
+				switchView: function(oidx, idx){
+					var width = $(window).width(),
+					pagers = this.pager.find('.pager-link');
+					
+					pagers.eq(oidx).removeClass('pager-active');
+					pagers.eq(idx).addClass('pager-active');
+					$("#js-top-slider li").eq(idx).fadeIn().siblings().fadeOut();
+					this.cursor = idx;
+				},
+				itemsUI: function () {
+					var width = $(window).width();
+					width =  width < 1200 ? 1200 : width;
+					this.items.each(function(){
+						var el = $(this),
+						ael = el.find('a'),
+						pic = ael.attr('data-pic'),
+						bgpic = ael.attr('data-bgpic');
+						if(pic){
+							ael.css('background', 'url("' + pic + '") no-repeat scroll center top transparent');
+						}
+						if(bgpic){
+							ael.parent().css('background', 'url("' + bgpic + '") repeat scroll 0 0 transparent');
+						}
+					});						
+				},
+				pagerUI: function () {
+					var html = '',
+					cls = 'pager-link';
+					for(var i=0; i<this.total; i++){
+						cls = i == 0 ? 'pager-link pager-active' : 'pager-link';
+						html += '<a class="' + cls + '" href="javascript:void(0);"></a>';
+					}
+					this.pager.html(html);
+				},
+				toolUI: function () {
+					var px = 10, width = $(window).width();
+					width =  width < 1200 ? 1200 : width;
+					px = (width - 1200) / 2;
+					this.slider.width(this.total * width);
+					this.prev.css({'display': 'none', 'left': px + 'px'});
+					this.next.css({'display': 'none', 'right': px + 'px'});
+					this.pager.css({'right': (px + 30) + 'px'});
+					$("#b-user").css({'right': (px + 300) + 'px'});
+					this.items.width(width);
+					this.items.find('a').width(width);
+					this.container.find('.bx-wrapper').width(width);
+					this.container.find('.bx-window').width(width);	
+				},
+				options: {
+					container: '',
+					pager: '',
+					prev: '',
+					next: '',
+					slider: ''
+				}
+			};
+			new Banner({
+					container: '#Js-banner',
+					pager: '#js-top-slider-pager',
+					prev: '#js-top-slider-prev',
+					next: '#js-top-slider-next',
+					slider: '#js-top-slider'
+				});
+		});
+		</script>
+	</div>
+</body>
+</html>
